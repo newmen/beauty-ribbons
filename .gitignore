@@ -31,6 +31,8 @@ rerun.txt
 # Security
 /config/initializers/secret_token.rb
 /config/secure_settings.yml
+/public/yandex*
+/public/google*
 
 # Cached pages
 public/sitemap.xml

@@ -2,7 +2,12 @@
 server_url = 'ribbons'
 
 # Secured configuration files
-secured_files = %w(initializers/secret_token.rb secure_settings.yml)
+secured_files = %w(
+  config/initializers/secret_token.rb
+  config/secure_settings.yml
+  public/yandex_64c9be9053cdc38c.txt
+  public/google5071cb7ac1177c11.html
+)
 
 # Bundler
 require 'bundler/capistrano'
@@ -44,24 +49,21 @@ namespace :deploy do
 
   task :create_secured_configuration, roles: :app do
     secured_files.each do |file|
-      remote_path = "#{server_url}:#{shared_path}/config/"
-
-      shared_config_dir = "#{shared_path}/config"
-      run "mkdir -p #{shared_config_dir}"
+      remote_path = "#{server_url}:#{shared_path}/"
 
       file_dirname = File.dirname(file)
       unless file_dirname == '.'
-        run "mkdir -p #{shared_config_dir}/#{file_dirname}"
+        run "mkdir -p #{shared_path}/#{file_dirname}"
         remote_path << "#{file_dirname}/"
       end
 
-      `scp config/#{file} #{remote_path}`
+      `scp #{file} #{remote_path}`
     end
   end
 
   task :link_secured_configuration, roles: :app do
     secured_files.each do |file|
-      run "ln -s #{shared_path}/config/#{file} #{release_path}/config/#{file}"
+      run "ln -s #{shared_path}/#{file} #{release_path}/#{file}"
     end
   end
 end
