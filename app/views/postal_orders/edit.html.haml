@@ -1,0 +1,45 @@
+= has_admin_menu do
+  = title t('.title')
+
+  = like_a_form do
+    = form_row t('activerecord.id'), @postal_order.id
+    = form_row t('activerecord.attributes.postal_order.username'), @postal_order.username
+    = form_row t('activerecord.attributes.postal_order.email') do
+      = mail_to @postal_order.email_with_name, @postal_order.email,
+                subject: t('postal_orders.manual_mail_subject', id: @postal_order.id)
+    = form_row t('activerecord.attributes.postal_order.address') do
+      %address
+        %em= "#{t('activerecord.attributes.postal_order.zipcode')}:"
+        = @postal_order.zipcode
+        - unless @postal_order.country.blank?
+          %br
+          %em= "#{t('activerecord.attributes.postal_order.country')}:"
+          = @postal_order.country
+        - unless @postal_order.region.blank?
+          %br
+          %em= "#{t('activerecord.attributes.postal_order.region')}:"
+          = @postal_order.region
+        %br
+        %em= "#{t('activerecord.attributes.postal_order.city')}:"
+        = @postal_order.city
+        %br
+        %em= "#{t('activerecord.attributes.postal_order.street_line')}:"
+        = @postal_order.street_line
+    = form_row t('activerecord.attributes.postal_order.comment') do
+      = @postal_order.comment.blank? ? t('activerecord.value.is_not') : @postal_order.comment
+
+    = form_row t('activerecord.attributes.order.state') do
+      .state{ id: "order-#{@postal_order.id}" }
+        = order_state(@postal_order)
+
+    = form_row t('activerecord.attributes.order.products'), 'products' do
+      .thumbnails
+        = render partial: 'products/ordered_product', collection: @postal_order.products, as: :product
+
+  = simple_form_for(@postal_order) do |f|
+    .form-inputs
+      = input_with_append f, :amount, t('units.currency'), class: 'input-mini'
+      = f.input :note
+    .form-actions
+      = f.button :submit, t('.submit'), class: 'btn-primary'
+      = cancel_button

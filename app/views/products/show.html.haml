@@ -1,0 +1,65 @@
+= title_with_edit_button @product.name, [:edit, @product.category, @product] do
+  = delete_button [@product.category, @product]
+
+.row
+  .span8
+    - cover_image = image_tag @product.cover.image.preview, class: 'preview', alt: @product.name, 'data-original' => @product.cover.image.url
+    - if @product.product_images.count > 1
+      .row
+        .span2
+          %ul#public_previews.thumbnails
+            = render partial: 'product_images/public_preview', collection: @product.product_images
+        .span6
+          .cover
+            = cover_image
+    - else
+      .cover
+        = cover_image
+
+    .row.info
+      .span4
+        %p
+          %strong= "#{t('activerecord.attributes.product.category')}:"
+          = link_to @product.category.name, @product.category, data: { push: true }
+        - unless @product.description.blank?
+          %p
+            %strong= "#{t('activerecord.attributes.product.description')}:"
+            %span.description= @product.description
+        - if @product.tags.exists?
+          %p
+            %strong= "#{t('activerecord.attributes.product.tag_list')}:"
+            = @product.tag_list
+        - if @product.colors.exists?
+          %p
+            %strong.colors-label= "#{t('activerecord.attributes.product.colors')}:"
+          .colors-list
+            - @product.colors.rainbow.each do |color|
+              = color_box(color.value)
+      .span4
+        %p.share-label
+          %strong= "#{t('actions.share')}:"
+        = social_share(@product.cover.image.thumb, @product.description)
+        - if @product.has_sizes?
+          .sizes
+            - %w(width height length diameter).each do |size|
+              - if @product.send(size)
+                %p
+                  %strong= %(#{t("activerecord.attributes.product.#{size}")}:)
+                  = @product.send(size)
+                  = t("activerecord.attributes.product.size_units")
+        .cart-block
+          - unless @product.is_archived?
+            .price-block
+              .price-title
+                = "#{t('activerecord.attributes.product.price')}:"
+              .prices
+                %strong= currency_price @product.price
+                - if @product.old_price && @product.old_price > @product.price
+                  %span.old-price
+                    = currency_price @product.old_price
+          = checkout_button(@product)
+
+  .span4.similar-products
+    %h4= t('.similar_products')
+    %ul.thumbnails
+      = render partial: 'similar_product', collection: @product.similar, locals: { current_product: @product }

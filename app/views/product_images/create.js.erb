@@ -1,0 +1,12 @@
+<% if @product_image.valid? %>
+  $('#product-images').append('<%= j render(@product_image) %>');
+
+  var a_cover_selector = '#product-images a.image-selector';
+  if ($(a_cover_selector).size() == 1) {
+    select_product_image($(a_cover_selector));
+  }
+
+  clicable_product_image();
+<% else %>
+  <%= render 'layouts/upload_problems', target: @product_image %>
+<% end %>

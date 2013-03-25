@@ -1,0 +1,6 @@
+<% if @page_image.valid? %>
+  $('#page-images').append('<%= j render(@page_image) %>');
+  clicable_page_images();
+<% else %>
+  <%= render 'layouts/upload_problems', target: @page_image %>
+<% end %>

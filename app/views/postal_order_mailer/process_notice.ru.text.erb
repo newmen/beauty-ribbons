@@ -1,0 +1,5 @@
+<%= render partial: 'order_mailer/greeting', formats: [:text] %>
+
+Ваш заказ №<%= @order.id %> был отправлен по почте.
+
+<%= render partial: 'order_mailer/sign', formats: [:text] %>

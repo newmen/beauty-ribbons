@@ -1,0 +1,28 @@
+= has_admin_menu do
+  = title t('.title')
+
+  = like_a_form do
+    = form_row t('activerecord.id'), @pre_order.id
+    = form_row t('activerecord.attributes.pre_order.username'), @pre_order.username
+    = form_row t('activerecord.attributes.pre_order.email') do
+      = mail_to @pre_order.email_with_name, @pre_order.email,
+                subject: t('pre_orders.manual_mail_subject', id: @pre_order.id)
+    = form_row t('activerecord.attributes.pre_order.expected_cost') do
+      = @pre_order.expected_cost > 0 ? currency_price(@pre_order.expected_cost) : t('activerecord.value.is_not')
+    = form_row t('activerecord.attributes.pre_order.comment') do
+      = @pre_order.comment.blank? ? t('activerecord.value.is_not') : @pre_order.comment
+
+    = form_row t('activerecord.attributes.order.state') do
+      .state{ id: "order-#{@pre_order.id}" }
+        = order_state(@pre_order)
+
+    = form_row t('activerecord.attributes.order.products'), 'products' do
+      .thumbnails
+        = render partial: 'products/ordered_product', collection: @pre_order.products, as: :product
+
+  = simple_form_for(@pre_order) do |f|
+    .form-inputs
+      = f.input :note
+    .form-actions
+      = f.button :submit, t('.submit'), class: 'btn-primary'
+      = cancel_button

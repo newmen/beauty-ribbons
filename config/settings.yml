@@ -1,0 +1,27 @@
+defaults: &defaults
+  domain_name: 'localhost:3000'
+
+  nova_days: '14'
+
+  sorting:
+    default: 'created_at-desc' # must be correspond sorting format
+    fields: [price, created_at] # product fields
+
+  counts:
+    welcome_products: '3'
+    products_per_page: '21'
+    common_tags: '21'
+    common_colors: '25'
+    similar_products: '2'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+  nova_days: '0'
+
+production:
+  <<: *defaults
+
+  domain_name: 'beauty-ribbons.ru'

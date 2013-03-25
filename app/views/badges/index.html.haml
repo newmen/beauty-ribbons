@@ -1,0 +1,26 @@
+= has_admin_menu do
+  = title t('.title')
+
+  %table{ class: 'table table-striped' }
+    %thead
+      %tr
+        %th= t('activerecord.attributes.badge.name')
+        %th= t('activerecord.attributes.badge.color')
+        %th= t('activerecord.attributes.badge.position')
+        %th
+
+    %tbody
+      - @badges.each do |badge|
+        %tr
+          %td= badge.name
+          %td= color_box(badge.color)
+          %td= badge.position
+          %td.centered
+            .btn-group
+              = edit_button [:edit, badge]
+              = delete_button badge unless badge.identifier
+
+  %br
+
+  .form-actions
+    = add_button Badge, new_badge_path

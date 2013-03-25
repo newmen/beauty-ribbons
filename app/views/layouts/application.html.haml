@@ -1,0 +1,49 @@
+!!!
+%html{ lang: I18n.locale }
+  %head
+    = encoding_meta_tag
+    = title_tag
+    /[if lt IE 9]
+      %script{ src: 'http://html5shim.googlecode.com/svn/trunk/html5.js', type: 'text/javascript' }
+    = stylesheet_link_tag 'application', media: 'all'
+    = csrf_meta_tags
+    = device_meta_tag
+    = yield :head
+  %body
+    #logo-front= link_to_unless_current t('default_title'), root_path, data: { push: true }
+    #logo-shadow= t('default_title')
+
+    #wrapper
+      %header
+        = main_menu
+        .crumbs
+          = render_wisebreadcrumbs
+        = render 'layouts/notices'
+
+      .container
+        = yield
+
+      - is_cart_controller = controller.class.include?(CartHelper)
+      - condition = has_stored_products? && !is_cart_controller && !devise_controller?
+      = hidden_tag_unless :a, condition, href: cart_path, class: 'cart', rel: 'nofollow', data: { push: true } do
+        = render 'cart/cart'
+
+    %footer
+      = bottom_menu
+      .feed
+        = link_to t('sitemap.show.title'), sitemap_page_path, data: { push: true }
+        |
+        = link_to atom_path do
+          Atom feed
+          = image_tag 'atom-feed.png'
+      .copyright
+        &copy;
+        = Time.now.year
+        = t('default_title')
+        \.
+        Created by
+        = link_to 'newmen.pro', 'http://newmen.pro'
+
+    = javascript_include_tag 'application'
+    = javascript_include_tag 'http://yandex.st/share/share.js'
+    = render 'layouts/ganal'

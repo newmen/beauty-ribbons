@@ -1,0 +1,10 @@
+= simple_form_for(@user) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :email, required: true
+    = f.input :password, as: :string, required: true
+
+  .form-actions
+    = f.button :submit, class: 'btn-primary'
+    = cancel_button

@@ -1,0 +1,14 @@
+= has_admin_menu do
+  = title t('.title')
+  = simple_form_for(@user, url: current_user_path, html: { method: :put }) do |f|
+    = f.error_notification
+
+    .form-inputs
+      = f.input :email, required: true
+      = f.input :current_password, hint: t('.current_password_hint'), required: true, input_html: { autocomplete: :off }
+      = f.input :password, hint: t('.password_hint'), required: false, input_html: { autocomplete: :off }
+      = f.input :password_confirmation, required: false
+
+    .form-actions
+      = f.button :submit, t('actions.edit'), class: 'btn-primary'
+      = cancel_button

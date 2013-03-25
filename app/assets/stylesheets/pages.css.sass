@@ -1,0 +1,37 @@
+@import markitup/skins/markitup/style
+@import markitup/sets/xbbcode/style
+
+.markItUp
+  width: auto
+
+.markItUpEditor
+  background: none
+  border-width: 0
+  font: inherit
+  padding: 5px
+
+.form-inputs
+  .control-group
+    .controls
+      textarea#page_markdown
+        width: 98%
+        height: 300px
+
+$imageLRMargin: 14px
+$imageTBMargin: 6px
+
+.page-text
+  text-indent: 34px
+  text-align: justify
+
+  img[alt=left]
+    float: left
+    margin: $imageTBMargin $imageLRMargin $imageLRMargin 0
+
+  img[alt=right]
+    float: right
+    margin: $imageTBMargin 0 $imageLRMargin $imageLRMargin
+
+  img[alt=center]
+    display: block
+    margin: $imageTBMargin auto

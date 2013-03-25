@@ -1,0 +1,11 @@
+%li.span2
+  .thumbnail
+    %div
+      = link_to [product.category, product], class: 'image', data: { push: true } do
+        = image_tag product.cover.image.sample
+    %div
+      = link_to [product.category, product], class: 'title', data: { push: true } do
+        = product.name
+    %div
+      = currency_price(product.price)
+      = hidden_field_tag 'ordered_products[]', product.id

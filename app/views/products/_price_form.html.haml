@@ -1,0 +1,14 @@
+%form{ action: url_for(params).split('?').first, method: :get, data: { push: true } }
+  .control-group
+    = label_tag :min_price, t('.min_price')
+    .input-append
+      = text_field_tag :min_price, prices[:min], class: 'input-mini'
+      %span.add-on= t('units.currency')
+  .control-group
+    = label_tag :max_price, t('.max_price')
+    .input-append
+      = text_field_tag :max_price, prices[:max], class: 'input-mini'
+      %span.add-on= t('units.currency')
+  - hidden_params.each do |k, v|
+    = hidden_field_tag k, v
+  = submit_tag t('.apply'), class: 'btn btn-small btn-success'

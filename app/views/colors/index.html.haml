@@ -1,0 +1,24 @@
+= has_admin_menu do
+  = title t('.title')
+
+  %table{ class: 'table table-striped' }
+    %thead
+      %tr
+        %th= t('activerecord.attributes.color.name')
+        %th= t('activerecord.attributes.color.value')
+        %th
+
+    %tbody
+      - @colors.each do |color|
+        %tr
+          %td= color.name
+          %td= color_box(color.value)
+          %td.centered
+            .btn-group
+              = edit_button [:edit, color]
+              = delete_button color
+
+  %br
+
+  .form-actions
+    = add_button Color, new_color_path

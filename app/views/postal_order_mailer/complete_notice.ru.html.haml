@@ -1,0 +1,5 @@
+= render partial: 'order_mailer/greeting', formats: [:html]
+
+%p Ваш заказ №#{@order.id} выполнен (доставлен).
+
+= render partial: 'order_mailer/sign', formats: [:html]

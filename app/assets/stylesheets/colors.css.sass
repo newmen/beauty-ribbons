@@ -1,0 +1,34 @@
+@import bootstrap-colorpicker
+@import compass/css3
+
+$boxShadowColor: rgba(0, 1, 1, 0.75)
+$topSeek: 2px
+
+.input-append,
+.input-prepend
+  &.color
+    .add-on
+      i
+        position: relative
+        top: $topSeek
+
+.color-box
+  +border-radius(2px)
+  width: 1.3em
+  height: 1.3em
+
+td .color-box
+  position: relative
+  top: $topSeek
+
+.colors-list
+  .color-box
+    float: left
+    margin: 0.5em
+    cursor: pointer
+
+    &.checked
+      +box-shadow($boxShadowColor 2px 3px 5px)
+      position: relative
+      top: -3px
+      left: -2px

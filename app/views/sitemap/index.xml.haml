@@ -1,0 +1,15 @@
+!!! XML
+%urlset{ xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9' }
+  - @static_paths.each do |path|
+    %url
+      %loc= URI.join(root_url, path)
+      %changefreq= 'monthly'
+  - @category_paths.each do |path|
+    %url
+      %loc= URI.join(root_url, path)
+      %changefreq= 'weekly'
+  - @products.each do |product|
+    %url
+      %loc= category_product_path(product.category, product)
+      %lastmod= product.updated_at.strftime('%F')
+      %changefreq= 'monthly'

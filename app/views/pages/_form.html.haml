@@ -1,0 +1,19 @@
+= simple_form_for(PageImage.new) do |f|
+  .form-inputs
+    = f.input :image, as: :file, input_html: { name: 'page_image[image]' }
+
+= render 'append_image_help'
+
+= simple_form_for(@page) do |f|
+  = f.error_notification
+
+  #page-images.thumbnails
+    = render @page.page_images
+
+  .form-inputs
+    = f.input :title
+    = f.input :markdown
+
+  .form-actions
+    = f.button :submit, class: 'btn-primary'
+    = cancel_button

@@ -1,0 +1,24 @@
+= has_admin_menu do
+  = title t('.title')
+
+  %table{ class: 'table table-striped' }
+    %thead
+      %tr
+        %th= t('activerecord.attributes.category.name')
+        %th= t('activerecord.attributes.category.position')
+        %th
+
+    %tbody
+      - @categories.each do |category|
+        %tr
+          %td= category.name
+          %td= category.position
+          %td.centered
+            .btn-group
+              = edit_button [:edit, category]
+              = delete_button category unless category.products.exists?
+
+  %br
+
+  .form-actions
+    = add_button t('.create_category'), new_category_path

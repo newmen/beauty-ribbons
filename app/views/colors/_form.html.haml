@@ -1,0 +1,10 @@
+= simple_form_for(@color) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = input_color f, :value
+
+  .form-actions
+    = f.button :submit, class: 'btn-primary'
+    = cancel_button

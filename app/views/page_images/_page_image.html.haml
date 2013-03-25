@@ -1,0 +1,6 @@
+%li.span2
+  %div{ id: "page-image-#{page_image.id}", class: 'thumbnail' }
+    = link_to '#', class: 'image-inserter' do
+      = image_tag page_image.image.sample, 'data-thumb' => page_image.image.thumb
+    = hidden_field_tag 'page[page_image_ids][]', page_image.id
+    = delete_button(page_image, remote: true)

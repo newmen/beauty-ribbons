@@ -1,0 +1,30 @@
+- title(@title)
+
+- is_archive = controller_name == 'static_products' && params[:archived]
+.row
+  .span3
+    - if user_signed_in? && controller_name != 'static_products'
+      .add_product
+        = add_button(Product, new_category_product_path(@category))
+    .filter
+      %h4= t('.filter.title')
+      = cancel_filter_link
+      = common_tags_list(@all_products)
+      = common_colors_list(@all_products)
+      - unless is_archive
+        .prices
+          = filter_title('prices')
+          = price_form(@all_products)
+    .go-up
+      = t('.go_up')
+  .span9
+    - if @products.exists?
+      - unless is_archive || @products.size == 1
+        .sorting
+          %strong= t('.sorting.title')
+          = sorting_links
+      %ul#products.thumbnails
+        = render @products
+    - else
+      .nothing_to_show
+        = t('.nothing_to_show')

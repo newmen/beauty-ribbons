@@ -1,0 +1,16 @@
+= title t('.title')
+
+- cache 'sitemap' do
+  .sitemap
+    %p.title= t('.statics')
+    %p= link_to t('welcome.index.title'), root_url, data: { push: true }
+    %p= link_to @delivery_page.title, delivery_path, data: { push: true }
+    %p.title= t('.categories')
+    - @categories.each do |category|
+      %p= link_to category.name, category, data: { push: true }
+    - @product_static_scopes.each do |scope_name|
+      %p= link_to t("static_products.#{scope_name}"), "/#{scope_name}", data: { push: true }
+
+    %p.title= t('.products')
+    - @products.each do |product|
+      %p= link_to product.name, [product.category, product], data: { push: true }

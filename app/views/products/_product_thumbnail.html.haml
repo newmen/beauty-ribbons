@@ -1,0 +1,19 @@
+%li{ class: width_class }
+  .thumbnail{ class: product.is_archived? ? 'archived-product' : 'product' }
+    = badge_label(product)
+    = link_to [product.category, product], class: 'image', data: { push: true } do
+      = image_tag product.cover.image.send(image_version)
+    = link_to [product.category, product], class: 'title', data: { push: true } do
+      %strong= product.name
+    .cart-block
+      - unless product.is_archived?
+        .price-block
+          .price-title
+            = "#{t('activerecord.attributes.product.price')}:"
+          .prices
+            %strong= currency_price product.price
+            - if product.old_price && product.old_price > product.price
+              %span.old-price
+                = currency_price product.old_price
+      .checkout-button
+        = checkout_button(product)

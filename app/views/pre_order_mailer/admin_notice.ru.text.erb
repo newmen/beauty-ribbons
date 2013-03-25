@@ -1,0 +1,5 @@
+Поступил новый предзаказ №<%= @order.id %>,
+от <%= @order.username %> <<%= @order.email %>>.
+
+Заказаны следующие товары:
+<%= render partial: 'order_mailer/products_list', formats: [:text] %>

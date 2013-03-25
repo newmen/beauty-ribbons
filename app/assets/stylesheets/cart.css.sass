@@ -1,0 +1,59 @@
+@import compass/css3
+
+$textColor: white
+
+.cart
+  z-index: 35
+  background-image: image-url('cart-bg.png')
+  background-repeat: no-repeat
+  width: 112px
+  height: 130px
+  position: absolute
+  bottom: -55px
+  left: 159px
+  padding-top: 23px
+  color: $textColor
+  text-align: center
+  font-family: "opensans-boldcond"
+  font-size: 18px
+
+  &:hover
+    color: $textColor
+    text-decoration: none
+
+  &:focus
+    color: $textColor
+
+  div
+    margin-top: 4px
+
+  .price
+    font-size: 16px
+
+  .title
+    font-size: 21px
+
+  .icons
+    margin-top: 8px
+
+    i
+      margin-right: 4px
+
+      &:last-child
+        margin-right: 0px
+
+.orders-separator
+  width: 89%
+  border-top: 1px dotted white
+  margin: 21px auto
+  opacity: 0.89
+
+.ordered-products, .desired-products
+  text-align: center
+
+  .thumbnails
+    display: inline-block
+    width: auto
+
+    li
+      margin-bottom: 5px

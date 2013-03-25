@@ -1,0 +1,7 @@
+= render partial: 'order_mailer/greeting', formats: [:html]
+
+%p Ваш предзаказ №#{@order.id} содержит следующие позиции:
+
+= render partial: 'order_mailer/products_list', formats: [:html]
+
+= render partial: 'order_mailer/sign', formats: [:html]

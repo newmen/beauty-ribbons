@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /cart
+Allow: /
+Sitemap: http://beauty-ribbons.ru/sitemap.xml

@@ -1,0 +1,22 @@
+- no_follow_this_page
+= title t('.title')
+- if ordered_products
+  .ordered-products
+    %h4= "#{t('.ordered_products')}:"
+    = products_mosaic(ordered_products)
+    %h5.total-price
+      = t('.total_price', value: total_price)
+    .create-order
+      = link_to new_postal_order_path, class: 'btn btn-primary', rel: 'nofollow', data: { push: true } do
+        = append_icon t('.create_postal_order'), 'icon-ok icon-white'
+
+- if ordered_products && desired_products
+  .orders-separator
+
+- if desired_products
+  .desired-products
+    %h4= "#{t('.desired_products')}:"
+    = products_mosaic(desired_products)
+    .create-order
+      = link_to new_pre_order_path, class: 'btn btn-info', rel: 'nofollow', data: { push: true } do
+        = append_icon t('.create_pre_order'), 'icon-ok icon-white'

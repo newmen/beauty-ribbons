@@ -1,0 +1,5 @@
+= render partial: 'order_mailer/greeting', formats: [:html]
+
+%p Ваш предзаказ №#{@order.id} отменён.
+
+= render partial: 'order_mailer/sign', formats: [:html]

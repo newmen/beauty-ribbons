@@ -1,0 +1,10 @@
+= render partial: 'order_mailer/greeting', formats: [:html]
+
+%p Изготовление товаров по Вашему предзаказу №#{@order.id} завершено.
+
+%p
+  Изготовленные товары Вы можете найти по ссылке
+  = link_to novelties_url, novelties_url
+  , в течение #{Settings.nova_days} дней.
+
+= render partial: 'order_mailer/sign', formats: [:html]

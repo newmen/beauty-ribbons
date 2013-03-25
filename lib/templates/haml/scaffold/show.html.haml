@@ -1,0 +1,8 @@
+<% for attribute in attributes -%>
+%p
+  %strong= "#{t('activerecord.attributes.<%= singular_table_name %>.<%= attribute %>')}:"
+  = @<%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+
+= edit_button [:edit, @<%= singular_table_name %>]
+= delete_button @<%= singular_table_name %>

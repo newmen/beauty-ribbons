@@ -1,0 +1,182 @@
+@import compass/css3
+@import jquery.fancybox
+
+.fancybox-close
+  background-image: image-url('close_circle.png')
+  width: 35px
+  height: 36px
+
+.fancybox-prev
+  span
+    background-image: image-url('prev_circle.png')
+
+.fancybox-next
+  span
+    background-image: image-url('next_circle.png')
+
+.fancybox-prev, .fancybox-next
+  span
+    background-position: 0 0
+    width: 34px
+    height: 36px
+
+.price-block
+  display: inline-block
+  text-align: left
+  margin: 0 auto
+
+  .price-title
+    float: left
+    width: 3.2em
+    height: 1.5em
+
+  .prices
+    display: inline
+
+    .old-price
+      display: block
+      text-decoration: line-through
+
+.thumbnails
+  .thumbnail
+    .badge-wrapper
+      position: relative
+      top: 0
+      left: 0
+
+      .special-badge
+        display: inline
+        position: absolute
+        top: 1.87em
+        right: -11px
+        padding: 0.21em 0.55em
+        color: white
+        // text-transform: uppercase
+        font-weight: bold
+        white-space: nowrap
+        cursor: pointer
+        +text-shadow(rgba(0, 1, 1, 0.25) 0px 1px 1px)
+        +border-radius(2px)
+
+    a.image
+      display: block
+
+    a.title
+      color: #333
+
+      &:hover
+        color: #333
+        text-decoration: none
+
+    .cart-block
+      .checkout-button
+        display: block
+        margin-top: 0.5em
+
+      .price-block
+        .old-price
+          line-height: 11px
+          font-size: 11px
+          color: #555
+
+// _form
+
+#product-images
+  .selected
+    border: 3px solid #5bb75b
+
+// index
+
+.thumbnails
+  .span3
+    .thumbnail
+      &.product
+        .cart-block
+          height: 70px
+
+      &.archived-product
+        .cart-block
+          height: 37px
+
+      .special-badge
+        font-size: 14px
+
+      a.image
+        line-height: 191px
+
+      a.title
+        white-space: nowrap
+        font-size: 12px
+
+  .span4
+    .thumbnail
+      .special-badge
+        font-size: 16px
+
+// show
+
+.similar-products
+  h4
+    margin-top: 0
+    text-align: center
+
+$coverHeight: 496px   // 391px
+
+.cover
+  +border-radius(7px)
+  max-width: 100%
+  min-height: $coverHeight
+  line-height: $coverHeight
+  text-align: center
+  cursor: pointer
+
+  img.preview
+    +border-radius(7px)
+
+.info
+  margin-top: 19px
+  margin-bottom: 19px
+
+  p
+    margin-left: 21px
+    text-indent: -21px
+
+  span.description
+    text-align: justify
+
+  .share-label
+    margin-bottom: 1px
+
+  #social-yashare
+    margin-bottom: 5px
+
+  .colors-label
+    float: left
+
+  .colors-list
+    position: relative
+    top: -6px
+
+    .color-box
+      cursor: default
+
+  .sizes
+    margin: 0 0 12px
+
+  .cart-block
+    .btn
+      +border-radius(6px)
+      font-size: 17.5px
+      font-weight: bold
+      padding: 7px 16px
+
+      i
+        top: 5px
+
+    .price-block
+      font-size: 21px
+
+      .old-price
+        font-size: 14px
+        color: #737373
+        margin-bottom: 5px

@@ -1,0 +1,24 @@
+ru:
+  postal_order_mailer:
+    admin_notice:
+      subject: "Поступил новый заказ"
+    checkout_notice:
+      subject: "Заказ оформлен"
+    process_notice:
+      subject: "Заказ отправлен"
+    complete_notice:
+      subject: "Заказ выполнен"
+    cancel_notice:
+      subject: "Заказ отменён"
+
+  pre_order_mailer:
+    admin_notice:
+      subject: "Поступил новый предзаказ"
+    checkout_notice:
+      subject: "Предзаказ поступил на рассмотрение"
+    process_notice:
+      subject: "Начало изготовления товаров предзаказа"
+    complete_notice:
+      subject: "Изготовление товаров предзаказа выполнено"
+    cancel_notice:
+      subject: "Предзаказ отменён"

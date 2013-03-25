@@ -1,0 +1,20 @@
+= has_admin_menu do
+  = title t('.title')
+
+  %table{ class: 'table table-striped' }
+    %thead
+      %tr
+        %th
+        %th= t('activerecord.attributes.product.category')
+        %th= t('activerecord.attributes.product.name')
+        %th= t('activerecord.attributes.product.price')
+        %th= t('activerecord.attributes.product.is_archived')
+        %th
+
+    %tbody#products
+      = render 'table_list'
+
+  %br
+
+  .form-actions
+    = add_button Product, new_product_path

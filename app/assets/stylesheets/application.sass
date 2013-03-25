@@ -1,0 +1,271 @@
+//
+// This is a manifest file that'll be compiled into application.css, which will include all the files
+// listed below.
+//
+// Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+// or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+//
+// You're free to add application-wide styles to this file and they'll appear at the top of the
+// compiled file, but it's generally better to create a new file per style scope.
+//= require_self
+//= require_tree .
+
+@font-face
+  font-family: "marckscript"
+  src: url('/assets/marckscript-regular-webfont.eot')
+  src: url('/assets/marckscript-regular-webfont.eot?#iefix') format("embedded-opentype"), url('/assets/marckscript-regular-webfont.woff') format("woff"), url('/assets/marckscript-regular-webfont.ttf') format("truetype"), url('/assets/marckscript-regular-webfont.svg#marck_scriptregular') format("svg")
+  font-weight: normal
+  font-style: normal
+
+@font-face
+  font-family: "opensans-boldcond"
+  src: url('/assets/opensans-condbold-webfont.eot')
+  src: url('/assets/opensans-condbold-webfont.eot?#iefix') format("embedded-opentype"), url('/assets/opensans-condbold-webfont.woff') format("woff"), url('/assets/opensans-condbold-webfont.ttf') format("truetype"), url('/assets/opensans-condbold-webfont.svg#open_sans_condensedbold') format("svg")
+  font-weight: bold
+  font-style: normal
+
+
+@font-face
+  font-family: "opensans-regular"
+  src: url('/assets/opensans-regular-webfont.eot')
+  src: url('/assets/opensans-regular-webfont.eot?#iefix') format("embedded-opentype"), url('/assets/opensans-regular-webfont.woff') format("woff"), url('/assets/opensans-regular-webfont.ttf') format("truetype"), url('/assets/opensans-regular-webfont.svg#open_sansregular') format("svg")
+  font-weight: normal
+  font-style: normal
+
+$baseFontFamily: "opensans-regular"
+$linkColor: #4b81c4
+$gridColumnWidth: 51px
+$gridGutterWidth: 19px
+@import bootstrap
+@import compass/css3
+
+$borderColor: #f5f5f5
+$borderWidth: 7px
+$wrapperWidth: 860px - 2 * $borderWidth
+$wrapperHeight: 100%
+$boxShadowColor: rgba(0, 1, 1, 0.75)
+$textShadowColor: rgba(0, 1, 1, 0.35)
+
+body
+  background-color: #5f5f5f
+  overflow-x: hidden
+
+@mixin logo-base($topShift, $zIndex)
+  +user-select(none)
+  position: relative
+  margin: 0 auto
+  top: $topShift
+  font-family: "marckscript"
+  font-size: 96px
+  text-align: center
+  width: $wrapperWidth
+  z-index: $zIndex
+
+$logoShift: 49px
+
+#logo-front
+  +logo-base($logoShift + 20px, 100)
+  color: $borderColor
+  cursor: default
+
+  a
+    color: $borderColor
+
+    &:hover
+      color: $borderColor
+      text-decoration: none
+
+#logo-shadow
+  +logo-base($logoShift, 0)
+  +text-shadow($textShadowColor 0 0 10px)
+
+#wrapper
+  +box-shadow($boxShadowColor 0 0 81px, $boxShadowColor 0 0 1px 0 inset)
+  +border-radius($borderWidth * 2)
+  position: relative
+  background-color: #e4e1e1
+  border: $borderWidth solid $borderColor
+  margin: ($logoShift + 11px) auto
+  padding-bottom: 26px // 44px
+  width: $wrapperWidth
+  height: $wrapperHeight
+  z-index: 1
+
+  &:after
+    +border-radius($borderWidth)
+    position: absolute
+    content: ""
+    background: image-url('fabric_3-640px.jpg')
+    opacity: 0.102
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    z-index: -1
+
+  .container
+    padding: $borderWidth
+
+@mixin horizontal-menu
+  > ul
+    margin: 0
+    font-size: 1px
+    line-height: 0
+    list-style: none outside none
+    text-align: justify
+    text-justify: newspaper
+    zoom: 1
+
+    &:after
+      display: inline-block
+      visibility: hidden
+      overflow: hidden
+      content: ''
+      width: 100%
+      height: 0
+
+    li
+      display: inline-block
+      font-size: $baseFontSize
+      line-height: normal
+
+      a:hover
+        text-decoration: none
+
+$mainMenuLeftShift: 102px
+$mainMenuHeight: $mainMenuLeftShift
+
+header > nav
+  position: relative
+  background-image: image-url('main-top-nav.png')
+  background-repeat: no-repeat
+  top: -3px
+  left: -$mainMenuLeftShift
+  width: $wrapperWidth + 2 * $mainMenuLeftShift
+  height: $mainMenuHeight
+  +horizontal-menu
+
+  > ul
+    position: relative
+    top: 39px
+    left: $mainMenuLeftShift + $borderWidth
+    width: $wrapperWidth - 2 * $borderWidth
+
+    li
+      +text-shadow($textShadowColor 1px 2px 1px)
+      font-family: "opensans-boldcond"
+      font-size: 24px
+      font-weight: bold
+      text-transform: uppercase
+
+      &.active
+        a
+          +text-shadow($textShadowColor 2px 3px 3px)
+          color: white
+
+      a
+        color: #f9ead3
+
+        &:hover
+          color: #f1bb65
+
+footer > nav
+  position: relative
+  top: -20px
+  margin: 0 auto
+  width: $wrapperWidth * 0.95
+  +horizontal-menu
+
+  > ul
+    li a
+      +border-radius(5px)
+      display: block
+      color: $borderColor
+      margin-top: 2px
+      margin-bottom: 2px
+      padding: 8px 12px
+
+      &:hover
+        background-color: $borderColor
+
+    li.active a
+      background-color: $borderColor
+      color: $linkColor
+
+a:focus
+  outline: 0
+  text-decoration: none
+
+$titleMargin: 34px
+
+h2
+  margin-left: $titleMargin
+  margin-bottom: 0.618em
+
+table
+  td.centered
+    text-align: center
+
+a, button
+  i
+    position: relative
+    top: 2px
+
+.crumbs
+  margin-left: 21px
+  color: #595357
+  font-size: 0.9em
+
+.alert
+  margin: $borderWidth $borderWidth
+
+.simple_form
+  @extend .form-horizontal
+
+.thumbnail
+  +box-shadow(none)
+  border: none
+  padding: 5px
+  text-align: center
+
+  img
+    @extend .img-rounded
+    margin-bottom: 4px
+
+  .btn
+    @extend .btn-small
+
+.front-actions
+  float: right
+  position: relative
+  top: 21px
+  left: -$titleMargin
+
+  &:after
+    clear: both
+
+$footerTextColor: #aeaeae
+$footerLinkColor: #aeeaea
+$footerLinkHover: #aeeeee
+
+.feed, .copyright
+  text-align: center
+  color: #bfbfbf
+  margin-bottom: 13px
+
+  a
+    color: #bfcfcf
+
+    &:hover
+      color #bfcfff
+
+.feed
+  font-size: 12px
+
+  img
+    position: relative
+    top: -2px
+    left: 2px
+
+.copyright
+  font-size: 10px

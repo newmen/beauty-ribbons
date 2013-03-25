@@ -1,0 +1,5 @@
+<%= render partial: 'order_mailer/greeting', formats: [:text] %>
+
+Изготовление товаров по вашему предзаказу №<%= @order.id %> было начато.
+
+<%= render partial: 'order_mailer/sign', formats: [:text] %>

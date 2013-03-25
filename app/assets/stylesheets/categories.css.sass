@@ -1,0 +1,86 @@
+@import compass/css3
+
+.add_product
+  margin-top: 5px
+
+$filterLeftMargin: 0.5em
+
+.filter
+  .tags
+    margin-bottom: 1em
+
+    ul
+      list-style-type: none
+      margin-left: $filterLeftMargin
+
+      li.checked
+        position: relative
+        left: -2px
+        font-weight: bold
+        font-size: 15px
+
+  .colors
+    .colors-list
+      display: inline-block
+
+  .prices
+    form
+      margin-left: $filterLeftMargin
+
+      label
+        float: left
+        position: relative
+        top: 5px
+        margin-right: 5px
+
+      input[type="submit"]
+        height: 26px
+
+  .cancel
+    a
+      margin-left: $filterLeftMargin
+
+.go-up
+  position: fixed
+  top: 0
+  display: none
+  opacity: 0.3
+  cursor: pointer
+  background-image: image-url('arrow-up-gray-md.png')
+  background-repeat: no-repeat
+  background-position: center 89px
+  overflow: hidden
+  color: #bfbfbf
+  font-family: "opensans-boldcond"
+  font-size: 55px
+  text-align: center
+  text-transform: uppercase
+  padding-top: 210px
+
+.sorting
+  text-align: right
+  margin: 10px 34px 10px 0
+
+  a
+    margin-left: 13px
+
+    i
+      background-repeat: no-repeat
+      display: inline-block
+      width: 16px
+      height: 16px
+
+      &.none
+        background-image: image-url('sort_both.png')
+
+      &.asc
+        background-image: image-url('sort_asc.png')
+
+      &.desc
+        background-image: image-url('sort_desc.png')
+
+.nothing_to_show
+  font-size: 34px
+  line-height: 40px
+  margin: 77px 0 77px
+  text-align: center

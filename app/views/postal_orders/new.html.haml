@@ -1,0 +1,28 @@
+- no_follow_this_page
+= title t('.title')
+
+= simple_form_for(@postal_order) do |f|
+  = f.error_notification
+
+  .form-info
+    = form_row t('activerecord.attributes.order.products'), 'products' do
+      .thumbnails
+        = render partial: 'products/ordered_product', collection: ordered_products, as: :product
+
+  .form-inputs
+    = f.input :username
+    = f.input :email
+    = f.input :zipcode
+    = f.input :country, as: :string
+    = f.input :region
+    = f.input :city
+    = f.input :street_line
+    = f.input :comment
+
+    = form_row t('.total_price') do
+      .total-price= total_price
+
+  .form-actions
+    = button_tag type: 'submit', class: 'btn btn-primary' do
+      = append_icon(t('.submit'), 'icon-envelope icon-white')
+    = cancel_button

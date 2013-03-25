@@ -1,0 +1,21 @@
+= has_admin_menu do
+  = title t('.title')
+
+  %table{ class: 'table table-striped' }
+    %thead
+      %tr
+        %th= t('activerecord.id')
+        %th= t('activerecord.attributes.order.contact')
+        %th= t('activerecord.attributes.postal_order.address')
+        %th= t('activerecord.attributes.order.state')
+        %th
+
+    %tbody
+      - @postal_orders.each do |postal_order|
+        %tr
+          %td= postal_order.id
+          %td= mail_to postal_order.email, postal_order.email_with_name, subject: t('postal_orders.manual_mail_subject', id: postal_order.id)
+          %td= postal_order.complete_address
+          %td= t("postal_orders.state.#{postal_order.state}")
+          %td.centered
+            = show_button [:edit, postal_order]

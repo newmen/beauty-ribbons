@@ -1,0 +1,4 @@
+= title_with_edit_button page.title, [:edit, page]
+
+- cache page do
+  .page-text= page.html.html_safe

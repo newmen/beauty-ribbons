@@ -1,0 +1,6 @@
+Поступил новый заказ №<%= @order.id %> на сумму <%= currency_price(@order.amount) %>,
+от <%= @order.username %> <<%= @order.email %>>.
+Адрес: <%= @order.complete_address %>
+
+Заказаны следующие товары:
+<%= render partial: 'order_mailer/products_list', formats: [:text] %>

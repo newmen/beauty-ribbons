@@ -1,0 +1,9 @@
+%p
+  Поступил новый
+  = link_to "предзаказ №#{@order.id}", [:edit, @order]
+  ,
+  %br
+  от #{@order.username} <#{@order.email}>.
+
+%p Заказаны следующие товары:
+= render partial: 'order_mailer/products_list', formats: [:text]

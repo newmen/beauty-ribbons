@@ -1,0 +1,298 @@
+ru:
+  default_title: "Красота в лентах"
+
+  devise:
+    shared_links:
+      sign_in: "Войти"
+      sign_up: "Регистрация"
+      sign_out: "Выйти"
+      forgot_password: "Забыли пароль?"
+      didnt_receive_confirmation: "Не получили инструкции подтверждения?"
+      didnt_receive_unlock: "Не получили инструкции разблокировки?"
+      sign_in_through: "Войти через %{provider}"
+
+  errors:
+    messages:
+      upload_problems: "Возникли ошибки при загрузке: %{problems}"
+      must_be_selected: "должно быть выбрано"
+      extension_white_list_error: "имеет неверный формат"
+
+  actions:
+    add: "Добавить %{model}"
+    show: "Посмотреть"
+    create: "Создать"
+    edit: "Редактировать"
+    destroy: "Удалить"
+    go_back: "Назад"
+    cancel: "Отмена"
+    are_u_sure: "Вы уверены?"
+    filtered: " (отфильтрованное)"
+    do_you_really_want_to_cancel_order: "Вы действительно хотите отменить заказ?\nПользователь будет информирован."
+    share: "Поделиться"
+
+  controller:
+    success_create: "%{model} успешно создан"
+    success_update: "%{model} успешно обновлён"
+    success_destroy: "%{model} успешно удалён"
+    category_has_products: "Категорию, в которой имеются продукты, удалить нельзя"
+    no_stored_products: "Нет заказаных товаров или они не доступны для заказа"
+    postal_orders_products_have_changed: "Извините, список доступных товаров изменился"
+    pre_orders_products_have_changed: "Некоторые товары доступны уже сейчас!"
+    you_are_not_root: "Для запрашиваемой операции необходимы права супер-администратора"
+    thanks_for_order: "Спасибо за Ваш заказ"
+
+  time:
+    never: "Никогда"
+
+  units:
+    size: "мм"
+    currency: "руб"
+
+  activerecord:
+    id: "№"
+    value:
+      is_not: "Отсутствует"
+    models:
+      user: "Пользователь"
+      category: "Категория"
+      product: "Товар"
+      badge: "Ярлык"
+      color: "Цвет"
+      postal_order: "Заказ"
+      pre_order: "Предзаказ"
+      page: "Страница"
+    attributes:
+      user:
+        email: "E-mail"
+        current_password: "Текущий пароль"
+        password: "Пароль"
+        password_confirmation: "Повтор пароля"
+        remember_me: "Запомни меня"
+        sign_in_count: "Заходов"
+        sign_in_at: "Последний заход"
+      category:
+        name: "Название"
+        position: "Позиция"
+      product:
+        category: "Категория"
+        name: "Название"
+        description: "Описание"
+        tag_list: "Ключевые слова"
+        colors: "Цвета"
+        width: "Ширина"
+        height: "Высота"
+        length: "Длинна"
+        diameter: "Диаметр"
+        size_units: "мм"
+        price: "Цена"
+        old_price: "Старая цена"
+        badge_id: "Ярлык"
+        price_units: "руб"
+        is_archived: "Архив"
+        cover: "Основное фото"
+      product_image:
+        image: "Фото"
+      badge:
+        name: "Название"
+        color: "Цвет"
+        position: "Приоритет"
+      color:
+        name: "Название"
+        value: "Значение"
+      order:
+        contact: "Контакт"
+        state: "Статус"
+        products: "Товары"
+      postal_order:
+        username: "Ф.И.О."
+        email: "E-mail"
+        zipcode: "Индекс"
+        country: "Страна"
+        region: "Область / край"
+        full_region: "%{region} обл./кр."
+        city: "Населённый пунк"
+        street_line: "Улица, дом"
+        comment: "Комментарий"
+        note: "Примечание"
+        address: "Адрес"
+        amount: "Общая стоимость"
+      pre_order:
+        username: "Ф.И.О."
+        email: "E-mail"
+        comment: "Комментарий"
+        expected_cost: "Ожидаемая цена"
+        note: "Примечание"
+      page:
+        title: "Заголовок"
+        markdown: "Текст"
+      page_image:
+        image: "Картинка"
+
+  control_panel:
+    menu:
+      pages: "Страницы"
+      categories: "Категории"
+      products: "Товары"
+      badges: "Ярлыки"
+      colors: "Цвета"
+      postal_orders: "Заказы"
+      pre_orders: "Просьбы"
+      personal_data: "Пароль"
+      users: "Юзеры"
+    index:
+      title: "Контрольная панель"
+
+  badges:
+    index:
+      title: "Список ярлыков"
+    new:
+      title: "Добавление ярлыка"
+    edit:
+      title: "Изменение ярлыка"
+    form:
+      position_hint: "чем больше, тем выше приоритет"
+
+  cart:
+    show:
+      title: "Корзина"
+      ordered_products: "Заказываемые товары"
+      total_price: "Итого: %{value}"
+      create_postal_order: "Оформить заказ"
+      desired_products: "Предзаказ на изготовление"
+      create_pre_order: "Оставить предзаказ"
+    buttons:
+      buy: "Купить"
+      pre_order: "Предзаказ"
+
+  categories:
+    show:
+      filter:
+        title: "Фильтр"
+        tags: "По словам"
+        colors: "По цвету"
+        prices: "По цене"
+        cancel: "Отменить"
+      sorting:
+        title: "Сортировать по"
+        price: "Цене"
+        created_at: "Новизне"
+      go_up: "Вверх"
+      nothing_to_show: "К сожалению, запрашиваемых товаров не имеется"
+    index:
+      title: "Список категорий"
+      create_category: "Добавить Категорию"
+    new:
+      title: "Добавление категории"
+    edit:
+      title: "Изменение категории"
+    form:
+      position_hint: "чем больше, тем правее в меню"
+
+  colors:
+    index:
+      title: "Список цветов"
+    new:
+      title: "Добавление цвета"
+    edit:
+      title: "Изменение цвета"
+
+  pages:
+    index:
+      title: "Список статичных страниц"
+    edit:
+      title: "Изменение страницы"
+
+  postal_orders:
+    manual_mail_subject: "Информация по заказу №%{id}"
+    state:
+      confirmed: "Оформлен"
+      processing: "Доставляется"
+      completed: "Выполнен"
+      canceled: "Отменён"
+    index:
+      title: "Список почтовых заказов"
+    new:
+      title: "Оформление заказа"
+      total_price: "Итоговая цена"
+      submit: "Оформить"
+    edit:
+      title: "Информация по заказу"
+      submit: "Сохранить Заметку"
+
+  pre_orders:
+    manual_mail_subject: "Информация по предзаказу №%{id}"
+    state:
+      confirmed: "Заказан"
+      processing: "Изготавливается"
+      completed: "Выполнен"
+      canceled: "Отменён"
+    index:
+      title: "Список предзаказов"
+    new:
+      title: "Оформление предзаказа"
+      submit: "Заказать"
+    edit:
+      title: "Информация по предзаказу"
+      submit: "Сохранить Заметку"
+
+  products:
+    index:
+      title: "Список товаров"
+    show:
+      similar_products: "Похожие товары"
+    new:
+      title: "Добавление товара"
+    edit:
+      title: "Изменение товара"
+    form:
+      through_coma: "через запятую"
+    price_form:
+      min_price: "От"
+      max_price: "До"
+      apply: "Применить"
+
+  static_products:
+    novelties: "Новинки"
+    sales: "Распродажа"
+    archived: "Архив"
+
+  users:
+    index:
+      title: "Список пользователей"
+      new_user: "Добавить Пользователя"
+    new:
+      title: "Добавление пользователя"
+    edit:
+      title: "Измение пользователя"
+
+  current_users:
+    edit:
+      title: "Изменение личных данных"
+      password_hint: "оставьте это поле пустым, если вы не хотите изменять пароль"
+      current_password_hint: "текущий пароль нужен для подтверждения внесённых изменений"
+
+  welcome:
+    index:
+      title: "Главная"
+
+  sitemap:
+    show:
+      title: "Карта сайта"
+      statics: "Статические страницы"
+      categories: "Категории"
+      products: "Товары"
+
+  passwords:
+    new:
+      title: "Забыли пароль?"
+      submit: "Отправить инструкции восстановления"
+    edit:
+      title: "Изменение пароля"
+      new_password: "Новый пароль"
+      confirm_password: "Новый пароль ещё раз"
+      submit: "Изменить мой пароль"
+  sessions:
+    new:
+      breadcrumb: "Вход"
+      title: "Стой! Кто идёт?"
+      submit: "Войти"

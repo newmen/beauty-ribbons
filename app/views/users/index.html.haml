@@ -1,0 +1,26 @@
+= has_admin_menu do
+  = title t('.title')
+
+  %table{ class: 'table table-striped' }
+    %thead
+      %tr
+        %th= t('activerecord.attributes.user.email')
+        %th= t('activerecord.attributes.user.sign_in_count')
+        %th= t('activerecord.attributes.user.sign_in_at')
+        %th
+
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.email
+          %td= user.sign_in_count
+          %td= user.current_sign_in_at ? l(user.current_sign_in_at, format: :short) : t('time.never')
+          %td.centered
+            .btn-group
+              = edit_button [:edit, user]
+              = delete_button user unless user == current_user
+
+  %br
+
+  .form-actions
+    = add_button t('.new_user'), new_user_path

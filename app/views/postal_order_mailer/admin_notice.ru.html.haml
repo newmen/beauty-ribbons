@@ -1,0 +1,11 @@
+%p
+  Поступил новый
+  = link_to "заказ №#{@order.id}", [:edit, @order]
+  на сумму #{currency_price(@order.amount)},
+  %br
+  от #{@order.username} <#{@order.email}>.
+  %br
+  Адрес: #{@order.complete_address}
+
+%p Заказаны следующие товары:
+= render partial: 'order_mailer/products_list', formats: [:text]

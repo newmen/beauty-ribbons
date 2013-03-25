@@ -1,0 +1,21 @@
+- no_follow_this_page
+= title t('.title')
+
+= simple_form_for(@pre_order) do |f|
+  = f.error_notification
+
+  .form-info
+    = form_row t('activerecord.attributes.order.products'), 'products' do
+      .thumbnails
+        = render partial: 'products/desired_product', collection: desired_products, as: :product
+
+  .form-inputs
+    = f.input :username
+    = f.input :email
+    = input_with_append f, :expected_cost, t('units.currency'), class: 'input-mini'
+    = f.input :comment
+
+  .form-actions
+    = button_tag type: 'submit', class: 'btn btn-info' do
+      = append_icon(t('.submit'), 'icon-time icon-white')
+    = cancel_button

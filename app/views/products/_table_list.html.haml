@@ -1,0 +1,12 @@
+- @products.each do |product|
+  %tr
+    %td= link_to image_tag(product.cover.image.smallest), [product.category, product], data: { push: true }
+    %td= product.category && product.category.name
+    %td= product.name
+    %td= currency_price product.price
+    %td.centered= product.is_archived ? t('simple_form.yes') : t('simple_form.no')
+    %td.centered
+      .btn-group
+        = show_button [product.category, product]
+        = edit_button [:edit, product.category, product]
+        = delete_button [product.category, product] unless product.orders.exists?

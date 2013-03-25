@@ -1,0 +1,2 @@
+class PreOrderMailer < OrderMailer
+end

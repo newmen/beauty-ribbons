@@ -1,0 +1,25 @@
+= title t('.title')
+
+%table{ class: 'table table-striped' }
+  %thead
+    %tr
+<% for attribute in attributes -%>
+      %th= t('activerecord.attributes.<%= singular_table_name %>.<%= attribute %>')
+<% end -%>
+      %th
+
+  %tbody
+    - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+      %tr
+<% for attribute in attributes -%>
+        %td= <%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+        %td.centered
+          .btn-group
+            = show_button <%= singular_table_name %>
+            = edit_button [:edit, <%= singular_table_name %>]
+            = delete_button <%= singular_table_name %>
+
+%br
+
+= add_button <%= human_name %>, new_<%= singular_table_name %>_path

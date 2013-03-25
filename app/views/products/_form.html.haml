@@ -1,0 +1,40 @@
+= simple_form_for(ProductImage.new) do |f|
+  .form-inputs
+    = f.input :image, as: :file, input_html: { name: 'product_image[image]' }
+
+= simple_form_for(@product) do |f|
+  = f.error_notification
+  - if f.error_notification && @product.errors[:cover]
+    %div.alert
+      = t('activerecord.attributes.product.cover')
+      = t('errors.messages.must_be_selected')
+
+  #product-images.thumbnails
+    = render @product.product_images
+
+  .form-inputs
+    = f.association :category
+    = f.input :name
+    = f.input :description
+    = f.input :tag_list, hint: t('.through_coma'), input_html: { class: 'input-xlarge' }
+
+    .control-group.optional
+      %label{ class: 'collection_check_boxes optional control-label' }= t('activerecord.attributes.product.colors')
+      .controls.colors-list
+        - f.collection_check_boxes :color_ids, Color.rainbow, :id, :name do |fcb|
+          = color_box(fcb.object.value)
+          = fcb.check_box style: 'display: none'
+        %input{ type: :hidden, name: 'product[color_ids][]', value: '' }
+
+    = input_with_append f, :width, t('units.size'), class: 'input-mini'
+    = input_with_append f, :height, t('units.size'), class: 'input-mini'
+    = input_with_append f, :length, t('units.size'), class: 'input-mini'
+    = input_with_append f, :diameter, t('units.size'), class: 'input-mini'
+    = input_with_append f, :price, t('units.currency'), class: 'input-mini'
+    = input_with_append f, :old_price, t('units.currency'), class: 'input-mini'
+    = f.input :badge_id, collection: Badge.not_defaults
+    = f.input :is_archived
+
+  .form-actions
+    = f.button :submit, class: 'btn-primary'
+    = cancel_button
