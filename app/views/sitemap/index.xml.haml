@@ -10,6 +10,6 @@
       %changefreq= 'weekly'
   - @products.each do |product|
     %url
-      %loc= category_product_path(product.category, product)
+      %loc= URI.join(root_url, url_for([product.category, product]))
       %lastmod= product.updated_at.strftime('%F')
       %changefreq= 'monthly'
