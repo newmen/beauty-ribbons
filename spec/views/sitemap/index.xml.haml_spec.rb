@@ -16,7 +16,7 @@ describe "sitemap/index.xml.haml" do
       assert_select 'url > loc', text: root_url
       assert_select 'url > loc', text: URI.join(root_url, category.slug).to_s
       products.each do |product|
-        assert_select 'url > loc', text: url_for([product.category, product])
+        assert_select 'url > loc', text: URI.join(root_url, url_for([product.category, product]))
       end
     end
   end

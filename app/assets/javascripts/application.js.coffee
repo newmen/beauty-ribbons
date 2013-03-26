@@ -142,7 +142,19 @@ $(document).off('page:done').on(
     _gaq.push(['_trackPageview', url])
 )
 
+# Returns the version of Windows Internet Explorer or a -1
+# (indicating the use of another browser).
+getIEVersion = ->
+  rv = -1 # Return value assumes failure.
+  if navigator.appName is 'Microsoft Internet Explorer'
+    ua = navigator.userAgent
+    re = new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})")
+    rv = parseFloat(RegExp.$1)  if re.exec(ua)?
+  rv
+
 $ ->
-  window.wiselinks = new Wiselinks($('.container'))
+  ie_version = getIEVersion()
+  if ie_version == -1 || ie_version >= 9
+    window.wiselinks = new Wiselinks($('.container'))
 
   call_on_reload_funcs()
