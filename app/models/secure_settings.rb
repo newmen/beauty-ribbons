@@ -1,6 +1,5 @@
 class SecureSettings < Settingslogic
-  SETTINGS_FILE = "#{Rails.root}/config/secure_settings.yml"
-  source File.exists?(SETTINGS_FILE) ? SETTINGS_FILE : "#{Rails.root}/config/secure_settings_gag.yml"
+  source "#{Rails.root}/config/secure_settings.yml"
   namespace Rails.env
 
   class << self
