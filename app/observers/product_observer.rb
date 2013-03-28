@@ -5,7 +5,7 @@ class ProductObserver < ActiveRecord::Observer
 
   def ping(product)
     unless Rails.env.test?
-      # SitemapPinger.ping(root_url(host: Settings.domain_name))
+      SitemapPinger.ping(root_url(host: Settings.domain_name))
     end
   end
 
