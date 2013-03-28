@@ -1,0 +1,22 @@
+defaults: &defaults
+  admin_email: 'admin@example.com'
+
+  ganal_account: 'GG-32222332-2'
+
+  contacts:
+    email: 'contacts@example.com'
+    email_with_name: 'Gag <contacts@example.com>'
+    author: 'Me and You'
+
+  gmail:
+    username: 'username'
+    password: 'password'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
