@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   # , :registerable
-  # , :recoverable
-  devise :database_authenticatable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :rememberable, :trackable, :validatable, :recoverable
 
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
