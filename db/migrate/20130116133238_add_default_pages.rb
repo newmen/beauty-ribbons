@@ -1,5 +1,3 @@
-# coding: utf-8
-
 class AddDefaultPages < ActiveRecord::Migration
   def up
     Page.attr_accessible :identifier # little hack for resolv mass-assign protected attributes

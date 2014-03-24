@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module ApplicationHelper
   def full_title
     return @full_title if @full_title

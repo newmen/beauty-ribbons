@@ -1,5 +1,3 @@
-# coding: utf-8
-
 class AddDefaultBadges < ActiveRecord::Migration
   def up
     Badge.attr_accessible :identifier # little hack for resolv mass-assign protected attributes

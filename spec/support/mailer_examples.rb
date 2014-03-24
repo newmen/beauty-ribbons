@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module MailerExamples
   shared_examples_for "valid_headers" do
     it "renders the headers" do

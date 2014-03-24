@@ -1,5 +1,3 @@
-# coding: utf-8
-
 class Page < ActiveRecord::Base
   attr_accessible :title, :markdown, :page_image_ids
 

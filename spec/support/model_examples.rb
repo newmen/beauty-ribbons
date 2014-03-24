@@ -1,5 +1,3 @@
-# coding: utf-8
-
 module ModelExamples
   shared_examples "emailable" do |email_field_name|
     %w(123@keks.ru asd.b@mama.pro aa22@god.com 22-aa@mod.edu).each do |value|
