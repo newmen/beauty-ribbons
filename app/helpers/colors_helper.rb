@@ -30,20 +30,20 @@ module ColorsHelper
     gradient_style
   end
 
-  private
-
-  def linear_gradient(start_position, start_color, end_color)
-    ['-webkit-', '-moz-', '-o-', ''].inject('') do |acc, prefix|
-      acc << "background-image: #{prefix}linear-gradient(#{start_position}, #{start_color}, #{end_color});"
-    end
-  end
-
   [:darken, :lighten].each do |helper_name|
     define_method(helper_name) do |hex_color_str, amount|
       ec = Sass::Script::Functions::EvaluationContext.new({})
       color = ec.send(helper_name, sass_color(hex_color_str), Sass::Script::Number.new(amount))
       color.options = {}
       color.to_s
+    end
+  end
+
+  private
+
+  def linear_gradient(start_position, start_color, end_color)
+    ['-webkit-', '-moz-', '-o-', ''].inject('') do |acc, prefix|
+      acc << "background-image: #{prefix}linear-gradient(#{start_position}, #{start_color}, #{end_color});"
     end
   end
 end
