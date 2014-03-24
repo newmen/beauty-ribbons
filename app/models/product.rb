@@ -24,7 +24,8 @@ class Product < ActiveRecord::Base
   validates_numericality_of :height, :width, :length, :diameter, greater_than: 0, allow_nil: true
 
   scope :include_refs, -> { includes(:category).includes(:cover) }
-  scope :not_products, -> products { products.empty? ? scoped : where('id NOT IN (?)', products.map(&:id)) }
+  scope :not_product_ids, -> ids { ids.empty? ? scoped : where('id NOT IN (?)', ids) }
+  scope :not_products, -> products { not_product_ids(products.map(&:id)) }
   scope :not_archived, -> { where(is_archived: false) }
 
   STATIC_SCOPES = %w(novelties sales archived)
@@ -111,7 +112,7 @@ class Product < ActiveRecord::Base
     ).order('similar_count DESC').limit(limit).to_a
 
     not_similars = -> scope do
-      scope.not_products(similar_products).order_by_rand(limit - similar_products.size)
+      scope.not_products(similar_products).order_by_rand.limit(limit - similar_products.size)
     end
 
     if similar_products.size < limit

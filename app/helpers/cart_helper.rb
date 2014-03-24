@@ -1,7 +1,6 @@
 module CartHelper
   def stored_product_ids
     session[:product_ids] ||= []
-    session[:product_ids]
   end
 
   def has_stored_products?

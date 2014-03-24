@@ -12,18 +12,17 @@ class WelcomeController < ApplicationController
   def find_products
     not_ordered_scope =
       if has_stored_products?
-        Product.where('id NOT IN (?)', stored_product_ids)
+        Product.not_product_ids(stored_product_ids)
       else
         Product.scoped
       end
     products_limit = Settings.counts.welcome_products.to_i
     @products = []
-    @products << not_ordered_scope.novelties.order_by_rand
-    @products << not_ordered_scope.sales.order_by_rand if products_limit > 1
-    @products.compact!
+    @products += not_ordered_scope.novelties.order_by_rand
+    @products += not_ordered_scope.sales.order_by_rand if products_limit > 1
 
     missing_products = -> scope do
-      scope.not_products(@products).order_by_rand(products_limit - @products.size)
+      scope.not_products(@products).order_by_rand.limit(products_limit - @products.size)
     end
 
     if @products.size < products_limit
