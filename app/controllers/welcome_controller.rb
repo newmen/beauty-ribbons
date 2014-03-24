@@ -18,12 +18,12 @@ class WelcomeController < ApplicationController
       end
     products_limit = Settings.counts.welcome_products.to_i
     @products = []
-    @products << not_ordered_scope.novelties.random
-    @products << not_ordered_scope.sales.random if products_limit > 1
+    @products << not_ordered_scope.novelties.order_by_rand
+    @products << not_ordered_scope.sales.order_by_rand if products_limit > 1
     @products.compact!
 
     missing_products = -> scope do
-      scope.not_products(@products).random(products_limit - @products.size)
+      scope.not_products(@products).order_by_rand(products_limit - @products.size)
     end
 
     if @products.size < products_limit

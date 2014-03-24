@@ -111,7 +111,7 @@ class Product < ActiveRecord::Base
     ).order('similar_count DESC').limit(limit).to_a
 
     not_similars = -> scope do
-      scope.not_products(similar_products).random(limit - similar_products.size)
+      scope.not_products(similar_products).order_by_rand(limit - similar_products.size)
     end
 
     if similar_products.size < limit

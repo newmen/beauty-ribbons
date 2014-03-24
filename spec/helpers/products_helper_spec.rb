@@ -11,7 +11,7 @@ describe ProductsHelper do
   end
 
   before(:each) do
-    helper.stub!(:params).and_return({ 'controller' => 'products', 'action' => 'index' })
+    helper.stub(:params).and_return({ 'controller' => 'products', 'action' => 'index' })
   end
 
   describe '#filter_title' do
