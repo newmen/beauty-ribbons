@@ -33,7 +33,7 @@ GEM
     atomic (1.1.16)
     bcrypt (3.1.7)
     bluecloth (2.2.0)
-    bootstrap-sass (3.1.1.0)
+    bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
     brakeman (2.4.3)
       erubis (~> 2.6)
@@ -282,7 +282,7 @@ PLATFORMS
 
 DEPENDENCIES
   bluecloth
-  bootstrap-sass
+  bootstrap-sass (= 2.3.2.2)
   brakeman
   breadcrumbs_on_rails
   capistrano
