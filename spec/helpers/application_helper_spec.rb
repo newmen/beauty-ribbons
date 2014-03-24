@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ApplicationHelper do
   describe 'meta tags' do
     shared_examples 'meta_tag' do |helper_name|
-      it { helper.send(helper_name).should have_selector 'meta' }
+      it { Capybara.string(helper.send(helper_name)).has_selector? 'meta' }
     end
 
     it_should_behave_like 'meta_tag', :encoding_meta_tag
@@ -20,15 +20,15 @@ describe ApplicationHelper do
     end
 
     describe '#title_tag' do
-      subject { helper.title_tag }
+      subject { Capybara.string(helper.title_tag) }
 
       it 'display title tag with default title' do
-        should have_selector 'title', text: I18n.t('default_title')
+        subject.has_selector? 'title', text: I18n.t('default_title')
       end
 
       it 'display title tag with extended title' do
         helper.title(title_text)
-        should have_selector 'title' do |content|
+        subject.has_selector? 'title' do |content|
           content.should contain title_text
           content.should contain I18n.t('default_title')
         end
