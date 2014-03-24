@@ -3,6 +3,7 @@ server_url = 'ribbons'
 
 # Secured configuration files
 secured_files = %w(
+  config/initializers/devise.rb
   config/initializers/secret_token.rb
   config/secure_settings.yml
   public/yandex_64c9be9053cdc38c.txt

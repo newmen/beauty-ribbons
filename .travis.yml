@@ -11,3 +11,4 @@ script:
 before_script:
   - cp config/secure_settings_gag.yml config/secure_settings.yml
   - cp config/initializers/secret_token_gag.rb config/initializers/secret_token.rb
+  - cp config/initializers/devise_gag.rb config/initializers/devise.rb
