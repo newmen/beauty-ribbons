@@ -17,7 +17,8 @@ set :bundle_without, [:development, :test]
 # RVM
 require 'rvm/capistrano'
 set :rvm_ruby_string, '2.1.1'
-set :default_shell, "/bin/bash --login"
+set :default_shell, '/bin/bash --login'
+set :rvm_bin_path, '/usr/local/rvm/bin'
 
 # Server setup
 server server_url, :app, :web, :db, primary: true
