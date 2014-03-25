@@ -23,6 +23,8 @@ class Product < ActiveRecord::Base
   validates_numericality_of :old_price, greater_than: 0, allow_nil: true
   validates_numericality_of :height, :width, :length, :diameter, greater_than: 0, allow_nil: true
 
+  scope :limit_random, -> limit { order_by_rand.limit(limit) }
+
   scope :include_refs, -> { includes(:category).includes(:cover) }
   scope :not_product_ids, -> ids { ids.empty? ? scoped : where('id NOT IN (?)', ids) }
   scope :not_products, -> products { not_product_ids(products.map(&:id)) }
@@ -112,7 +114,7 @@ class Product < ActiveRecord::Base
     ).order('similar_count DESC').limit(limit).to_a
 
     not_similars = -> scope do
-      scope.not_products(similar_products).order_by_rand.limit(limit - similar_products.size)
+      scope.not_products(similar_products).limit_random(limit - similar_products.size)
     end
 
     if similar_products.size < limit
