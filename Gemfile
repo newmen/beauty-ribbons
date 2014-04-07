@@ -25,6 +25,7 @@ gem 'sass' # for ColorHelper
 gem 'settingslogic'
 gem 'simple_form'
 gem 'state_machine'
+gem 'utf8-cleaner'
 gem 'wiselinks'
 
 group :development, :test do

@@ -271,6 +271,7 @@ GEM
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    utf8-cleaner (0.0.6)
     warden (1.2.3)
       rack (>= 1.0)
     wiselinks (1.2.0)
@@ -325,4 +326,5 @@ DEPENDENCIES
   thin
   turbo-sprockets-rails3
   uglifier (>= 1.0.3)
+  utf8-cleaner
   wiselinks
