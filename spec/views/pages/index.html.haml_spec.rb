@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "pages/index" do
-  let(:page) { stub_model(Category, attributes_for(:page)) }
+  let(:page) { create(:page) }
 
   before(:each) do
     assign(:pages, [page, page])

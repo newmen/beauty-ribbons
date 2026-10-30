@@ -21,12 +21,12 @@ describe CartHelper do
 
     describe '#has_stored_products?' do
       it "false when products aren't stored" do
-        helper.has_stored_products?.should be_false
+        helper.has_stored_products?.should be false
       end
 
       it 'true when products are stored' do
         add_store_product
-        helper.has_stored_products?.should be_true
+        helper.has_stored_products?.should be true
       end
     end
 
@@ -77,7 +77,7 @@ describe CartHelper do
     describe '#ids_corresponds_to_products' do
       it 'when has array of stringify product ids and products array' do
         shuffled_ids_str = products.map(&:id).map(&:to_s).shuffle
-        helper.ids_corresponds_to_products(shuffled_ids_str, products).should be_true
+        helper.ids_corresponds_to_products(shuffled_ids_str, products).should be true
       end
     end
 
@@ -207,10 +207,10 @@ describe CartHelper do
 
     def assert_products_rows(creating_products_num, *products_nums)
       result = helper.products_mosaic(create_products(creating_products_num))
-      products_nums.each do |num|
-        result.should have_selector 'div.thumbnails' do |row|
-          row.should have_selector 'img', num
-        end
+      rows = Capybara.string(result).all('div.thumbnails')
+      rows.size.should eq products_nums.size
+      products_nums.each_with_index do |num, index|
+        rows[index].should have_selector 'img', count: num
       end
     end
 

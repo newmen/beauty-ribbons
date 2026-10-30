@@ -1,14 +1,18 @@
 class PageImagesController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
-  # POST /page_images
   def create
-    @page_image = PageImage.create(params[:page_image])
+    @page_image = PageImage.create(page_image_params)
   end
 
-  # DELETE /page_images/1
   def destroy
     @page_image = PageImage.find(params[:id])
     @page_image.destroy
+  end
+
+  private
+
+  def page_image_params
+    params.fetch(:page_image, {}).permit(:image, :page_id)
   end
 end

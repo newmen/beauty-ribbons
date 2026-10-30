@@ -1,3 +1,3 @@
 class PostalOrderMailer < OrderMailer
-  add_template_helper ApplicationHelper
+  helper ApplicationHelper
 end

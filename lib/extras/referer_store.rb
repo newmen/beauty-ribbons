@@ -13,14 +13,14 @@ module RefererStore
     #   @param [String] uri_part that will be ignored
     # @overload(uri_part1, uri_part2, ...)
     #   @param [Array] uri_parts that will be ignored
-    # @overload(..., before_filter_options)
-    #   @param [Hash] before_filter_options Hash that contains options for before_filter
+    # @overload(..., before_action_options)
+    #   @param [Hash] before_action_options Hash that contains options for before_action
     #
     # @example Store referer if request not from *users* page and only for #show method
     #   store_referer :users, only: show
     def store_referer_except(*uris)
-      before_filter_options = uris.extract_options!
-      before_filter :store_back_url, before_filter_options
+      before_action_options = uris.extract_options!
+      before_action :store_back_url, before_action_options
 
       except_regexp = uris.join('|')
       define_method(:store_back_url) do

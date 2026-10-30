@@ -65,7 +65,7 @@ describe ProductsHelper do
   end
 
   describe '#price_form' do
-    subject { helper.price_form(Product.scoped) }
+    subject { helper.price_form(Product.all) }
 
     let(:min_price) { product.price.to_f.to_i }
     let(:max_price) { another_product.price.to_f.to_i }

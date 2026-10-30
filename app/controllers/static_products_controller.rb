@@ -7,12 +7,11 @@ class StaticProductsController < ProductsFilterController
 
   add_root_breadcrumb
 
-  # GET /products
   def index
-    @products = Product.scoped
+    @products = Product.all
     current_scope = Product::STATIC_SCOPES.find { |scope_name| params[scope_name] }
     @title = I18n.t("static_products.#{current_scope}")
     add_breadcrumb @title, "/#{current_scope}"
-    render 'categories/show'
+    render "categories/show"
   end
 end

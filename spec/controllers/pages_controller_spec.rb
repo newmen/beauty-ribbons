@@ -46,7 +46,7 @@ describe PagesController do
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested page" do
-          Page.any_instance.should_receive(:update_attributes).with({ "title" => "valid value" })
+          Page.any_instance.should_receive(:update).with(hash_including("title" => "valid value"))
           put :update, {:id => current_page.to_param, :page => { "title" => "valid value" }}
         end
 

@@ -19,7 +19,6 @@
 #= require jquery.fancybox
 #= require bootstrap-alert
 #= require bootstrap-colorpicker
-#= require wiselinks
 #= require markitup
 #= require markitup/sets/xbbcode/set
 #= require_tree .
@@ -89,16 +88,6 @@ on_resize_funcs = []
 window.onresize = ->
   call_each on_resize_funcs
 
-handle_wiselinks_breadcrumbs = ->
-  set_breadcrumbs = (xhr) ->
-    crumbs = xhr.getResponseHeader('X-Wiselinks-Breadcrumbs') ? ''
-    $('.crumbs').html decodeURI(crumbs)
-  _super = Wiselinks::_set_title
-  Wiselinks::_set_title = (xhr) ->
-    _super(xhr)
-    set_breadcrumbs(xhr)
-handle_wiselinks_breadcrumbs()
-
 select_current_menu_item = (items_list_selector, first_level_path) ->
   selected_css_class_name = 'active'
   $items_list = $(items_list_selector)
@@ -129,32 +118,8 @@ handle_menu_switch = ->
 scroll_to_top = ->
   $('html, body').scrollTop(75)
 
-$(document).off('page:done').on(
-  'page:done'
-  (event, $target, status, url, data) ->
-    $(document).off('scroll')
-    call_on_reload_funcs()
-
-    handle_logo()
-    handle_menu_switch()
-    scroll_to_top()
-
-    _gaq.push(['_trackPageview', url])
-)
-
-# Returns the version of Windows Internet Explorer or a -1
-# (indicating the use of another browser).
-getIEVersion = ->
-  rv = -1 # Return value assumes failure.
-  if navigator.appName is 'Microsoft Internet Explorer'
-    ua = navigator.userAgent
-    re = new RegExp("MSIE ([0-9]{1,}[.0-9]{0,})")
-    rv = parseFloat(RegExp.$1)  if re.exec(ua)?
-  rv
-
 $ ->
-  ie_version = getIEVersion()
-  if ie_version == -1 || ie_version >= 9
-    window.wiselinks = new Wiselinks($('.container'))
-
+  handle_logo()
+  handle_menu_switch()
+  scroll_to_top()
   call_on_reload_funcs()

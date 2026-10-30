@@ -36,7 +36,7 @@ describe PreOrdersController do
 
         it "returns http success if has stored product" do
           get :new
-          response.should be_success
+          response.should be_successful
         end
 
         it "assigns a new pre_order as @pre_order" do
@@ -129,7 +129,7 @@ describe PreOrdersController do
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested pre_order" do
-          PreOrder.any_instance.should_receive(:update_attributes).with({ "username" => "valid value" })
+          PreOrder.any_instance.should_receive(:update).with(hash_including("username" => "valid value"))
           put :update, {:id => pre_order.to_param, :pre_order => { "username" => "valid value" }}
         end
 

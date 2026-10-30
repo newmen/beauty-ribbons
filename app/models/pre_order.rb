@@ -1,7 +1,6 @@
 class PreOrder < Order
-  attr_accessible :expected_cost
-
   monetize :expected_cost_cents
+
   validates_presence_of :username
   validates_numericality_of :expected_cost, allow_nil: true
   validates :email, presence: true, format: BeautyRibbons::Application.email_regexp
@@ -9,20 +8,19 @@ class PreOrder < Order
   private
 
   def do_checkout
-    PreOrderMailer.admin_notice(self).deliver
-    PreOrderMailer.checkout_notice(self).deliver
+    PreOrderMailer.admin_notice(self).deliver_now
+    PreOrderMailer.checkout_notice(self).deliver_now
   end
 
   def do_process
-    # PreOrderMailer.process_notice(self).deliver
+    # PreOrderMailer.process_notice(self).deliver_now
   end
 
   def do_complete
-    PreOrderMailer.complete_notice(self).deliver
+    PreOrderMailer.complete_notice(self).deliver_now
   end
 
   def do_cancel
-    PreOrderMailer.cancel_notice(self).deliver
+    PreOrderMailer.cancel_notice(self).deliver_now
   end
-
 end

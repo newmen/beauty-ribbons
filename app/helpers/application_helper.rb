@@ -12,8 +12,6 @@ module ApplicationHelper
 
   def title(text)
     content_for(:title, text)
-    wiselinks_title(full_title)
-
     content_tag(:h2, text)
   end
 

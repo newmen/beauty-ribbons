@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "users/index" do
-  let(:user) { stub_model(User, attributes_for(:user)) }
+  let(:user) { create(:user) }
 
   before(:each) do
     assign(:users, [user, user])

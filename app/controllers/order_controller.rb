@@ -1,12 +1,12 @@
 class OrderController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
   def update
     @order = Order.find(params[:id])
     if @order.state == params[:state]
       @order.switch_to_next_state
     else
-      render status: 400
+      head 400
     end
   end
 

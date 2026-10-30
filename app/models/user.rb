@@ -1,14 +1,9 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  # , :registerable
-  devise :database_authenticatable, :rememberable, :trackable, :validatable, :recoverable
+  attr_accessor :current_password
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  devise :database_authenticatable, :rememberable, :trackable, :validatable, :recoverable
 
   def admin?
     email == SecureSettings.admin_email
   end
-
 end

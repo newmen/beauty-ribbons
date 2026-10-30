@@ -4,6 +4,6 @@ class SessionsController < Devise::SessionsController
   private
 
   def add_breadcrumbs
-    add_breadcrumb I18n.t('sessions.new.breadcrumb')
+    add_breadcrumb I18n.t("sessions.new.breadcrumb")
   end
 end

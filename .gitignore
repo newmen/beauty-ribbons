@@ -38,3 +38,9 @@ rerun.txt
 # Cached pages
 public/sitemap.xml
 public/products.atom
+
+# Generated deployment artifacts
+/public/assets
+/public/uploads
+/storage
+/db/*.sqlite3-*

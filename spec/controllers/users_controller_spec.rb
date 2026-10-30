@@ -108,8 +108,8 @@ describe UsersController do
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested user" do
-          User.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
-          put :update, {:id => user.to_param, :user => { "these" => "params" }}
+          User.any_instance.should_receive(:update).with(hash_including("email" => "changed@example.com"))
+          put :update, {:id => user.to_param, :user => { "email" => "changed@example.com" }}
         end
 
         it "assigns the requested user as @user" do

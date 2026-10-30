@@ -1,14 +1,18 @@
 class ProductImagesController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
-  # POST /product_images
   def create
-    @product_image = ProductImage.create(params[:product_image])
+    @product_image = ProductImage.create(product_image_params)
   end
 
-  # DELETE /product_images/1
   def destroy
     @product_image = ProductImage.find(params[:id])
     @product_image.destroy
+  end
+
+  private
+
+  def product_image_params
+    params.fetch(:product_image, {}).permit(:image, :product_id)
   end
 end

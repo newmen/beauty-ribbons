@@ -1,0 +1,26 @@
+@mixin border-radius($radius)
+  border-radius: $radius
+
+@mixin box-shadow($shadows...)
+  box-shadow: $shadows
+
+@mixin text-shadow($shadows...)
+  text-shadow: $shadows
+
+@mixin user-select($value)
+  user-select: $value
+
+@mixin column-count($count)
+  column-count: $count
+
+@mixin column-gap($gap)
+  column-gap: $gap
+
+@mixin clearfix
+  &:before,
+  &:after
+    content: " "
+    display: table
+
+  &:after
+    clear: both

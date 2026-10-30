@@ -13,7 +13,7 @@ describe ControlPanelController do
       before { sign_in create(:user) }
       it "returns http success" do
         get 'index'
-        response.should be_success
+        response.should be_successful
       end
     end
 

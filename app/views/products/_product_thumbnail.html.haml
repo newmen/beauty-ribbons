@@ -2,7 +2,7 @@
   .thumbnail{ class: product.is_archived? ? 'archived-product' : 'product' }
     = badge_label(product)
     = link_to [product.category, product], class: 'image', data: { push: true } do
-      = image_tag product.cover.image.send(image_version)
+      = image_tag product.cover.image.send(image_version).url
     = link_to [product.category, product], class: 'title', data: { push: true } do
       %strong= product.name
     .cart-block

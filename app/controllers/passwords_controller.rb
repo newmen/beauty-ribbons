@@ -4,6 +4,6 @@ class PasswordsController < Devise::PasswordsController
   private
 
   def add_breadcrumbs
-    add_breadcrumb I18n.t('passwords.edit.title')
+    add_breadcrumb I18n.t("passwords.edit.title")
   end
 end

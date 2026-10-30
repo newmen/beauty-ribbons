@@ -1,6 +1,6 @@
 - @products.each do |product|
   %tr
-    %td= link_to image_tag(product.cover.image.smallest), [product.category, product], data: { push: true }
+    %td= link_to image_tag(product.cover.image.smallest.url), [product.category, product], data: { push: true }
     %td= product.category && product.category.name
     %td= product.name
     %td= currency_price product.price

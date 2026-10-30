@@ -2,7 +2,7 @@
   .thumbnail
     %div
       = link_to [product.category, product], class: 'image', data: { push: true } do
-        = image_tag product.cover.image.sample
+        = image_tag product.cover.image.sample.url
     %div
       = link_to [product.category, product], class: 'title', data: { push: true } do
         = product.name

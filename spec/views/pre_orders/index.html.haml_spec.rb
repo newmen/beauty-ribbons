@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "pre_orders/index" do
-  let(:pre_order) { stub_model(PreOrder, attributes_for(:pre_order)) }
+  let(:pre_order) { create(:pre_order) }
 
   before(:each) do
     assign(:pre_orders, [pre_order, pre_order])

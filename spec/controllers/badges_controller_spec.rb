@@ -108,7 +108,7 @@ describe BadgesController do
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested badge" do
-          Badge.any_instance.should_receive(:update_attributes).with({ "name" => "valid value" })
+          Badge.any_instance.should_receive(:update).with(hash_including("name" => "valid value"))
           put :update, {:id => badge.to_param, :badge => { "name" => "valid value" }}
         end
 

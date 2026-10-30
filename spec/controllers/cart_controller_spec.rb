@@ -17,14 +17,14 @@ describe CartController do
     it "returns http success if has stored product" do
       store_product
       get :show
-      response.should be_success
+      response.should be_successful
     end
   end
 
   describe "GET 'create'" do
     it "returns http success" do
       post :create, product_slug: product.slug, format: :js
-      response.should be_success
+      response.should be_successful
     end
 
     it "saves passed product_id in session" do
@@ -51,7 +51,7 @@ describe CartController do
   describe "GET 'destroy'" do
     it "returns http success" do
       delete :destroy, product_slug: product.slug, format: :js
-      response.should be_success
+      response.should be_successful
     end
 
     it "removes passed product_id from session" do

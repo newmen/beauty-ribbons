@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
   include CartHelper
 
-  before_filter :find_products, only: :index
+  before_action :find_products, only: :index
 
   def initialize
     super
@@ -19,7 +19,7 @@ class WelcomeController < ApplicationController
       if has_stored_products?
         Product.not_product_ids(stored_product_ids)
       else
-        Product.scoped
+        Product.all
       end
 
     @products = []
@@ -31,7 +31,7 @@ class WelcomeController < ApplicationController
     end
 
     if @products.size < @products_limit
-      @products += missing_products(Product.scoped)
+      @products += missing_products(Product.all)
     end
 
     @products.shuffle!

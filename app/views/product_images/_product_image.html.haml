@@ -2,7 +2,7 @@
 %li.span2
   %div{ id: "product-image-#{product_image.id}", class: "thumbnail #{is_cover ? 'selected' : ''}" }
     = link_to '#', class: 'image-selector' do
-      = image_tag product_image.image.sample
+      = image_tag product_image.image.sample.url
       = radio_button_tag 'product[cover_id]', product_image.id, is_cover, style: 'display: none;'
     = hidden_field_tag 'product[product_image_ids][]', product_image.id
     = delete_button(product_image, remote: true)

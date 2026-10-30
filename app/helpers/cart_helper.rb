@@ -20,7 +20,7 @@ module CartHelper
   end
 
   def ids_corresponds_to_products(ids_str, products)
-    ids_str.map(&:to_i).to_set == products.map(&:id).to_set
+    Array(ids_str).map(&:to_i).to_set == products.map(&:id).to_set
   end
 
   def unstore_products(products)

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "badges/index" do
-  let(:badge) { stub_model(Badge, attributes_for(:badge)) }
+  let(:badge) { create(:badge) }
 
   before(:each) do
     assign(:badges, [badge, badge])

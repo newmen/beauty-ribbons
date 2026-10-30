@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "postal_orders/index" do
-  let(:postal_order) { stub_model(PostalOrder, attributes_for(:postal_order)) }
+  let(:postal_order) { create(:postal_order) }
 
   before(:each) do
     assign(:postal_orders, [postal_order, postal_order])

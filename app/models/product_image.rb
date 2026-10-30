@@ -1,8 +1,7 @@
 class ProductImage < ActiveRecord::Base
-  attr_accessible :product_id, :image
   mount_uploader :image, ProductImageUploader
 
-  belongs_to :product
+  belongs_to :product, optional: true
 
   validates_presence_of :image
 end

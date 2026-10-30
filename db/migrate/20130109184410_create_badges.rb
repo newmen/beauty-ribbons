@@ -1,4 +1,4 @@
-class CreateBadges < ActiveRecord::Migration
+class CreateBadges < ActiveRecord::Migration[7.2]
   def change
     create_table :badges do |t|
       t.string :identifier, limit: 4

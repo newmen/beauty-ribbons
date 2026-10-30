@@ -116,7 +116,7 @@ describe CategoriesController do
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested category" do
-          Category.any_instance.should_receive(:update_attributes).with({ "name" => "valid value" })
+          Category.any_instance.should_receive(:update).with(hash_including("name" => "valid value"))
           put :update, {:slug => category.slug, :category => { "name" => "valid value" }}
         end
 

@@ -6,8 +6,8 @@ describe "categories/show" do
   before(:each) do
     view.stub(:params).and_return({ 'controller' => 'categories', 'action' => 'show', 'slug' => category.slug })
     assign(:category, category)
-    assign(:products, Product.scoped)
-    assign(:all_products, Product.scoped)
+    assign(:products, Product.all)
+    assign(:all_products, Product.all)
   end
 
   it "renders products" do

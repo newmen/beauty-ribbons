@@ -1,5 +1,5 @@
 module ViewExamples
-  shared_examples 'see_or_not_button' do |btn_type|
+  shared_examples 'see_or_not_button' do |btn_type, *matcher_args|
     describe "unauthorized user" do
       it "doen't see #{btn_type} button" do
         render
@@ -12,13 +12,13 @@ module ViewExamples
 
       it "sees #{btn_type} button" do
         render
-        rendered.should send("have_#{btn_type}_button")
+        rendered.should send("have_#{btn_type}_button", *matcher_args)
       end
     end
   end
 
   shared_examples "see_or_not_add_button" do |model_name|
-    it_behaves_like 'see_or_not_button', 'add'
+    it_behaves_like 'see_or_not_button', 'add', model_name
   end
 
   %w(edit destroy).each do |btn_type|

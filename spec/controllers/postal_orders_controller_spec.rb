@@ -36,7 +36,7 @@ describe PostalOrdersController do
 
         it "returns http success if has stored product" do
           get :new
-          response.should be_success
+          response.should be_successful
         end
 
         it "assigns a new postal_order as @postal_order" do
@@ -137,7 +137,7 @@ describe PostalOrdersController do
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested postal_order" do
-          PostalOrder.any_instance.should_receive(:update_attributes).with({ "username" => "valid value" })
+          PostalOrder.any_instance.should_receive(:update).with(hash_including("username" => "valid value"))
           put :update, {:id => postal_order.to_param, :postal_order => { "username" => "valid value" }}
         end
 

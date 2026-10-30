@@ -1,5 +1,5 @@
 class Tag < ProductFilter
   def self.most_common(products)
-    super.sort_by { |tag| tag.name }
+    super.sort_by(&:name)
   end
 end

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "colors/index" do
-  let(:color) { stub_model(Color, attributes_for(:color)) }
+  let(:color) { create(:color) }
 
   before(:each) do
     assign(:colors, [color, color])

@@ -1,13 +1,11 @@
 class Page < ActiveRecord::Base
-  attr_accessible :title, :markdown, :page_image_ids
-
   has_many :page_images, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
   validates :markdown, presence: true
 
   class << self
-    def method_missing(method_name, *args)
+    def method_missing(method_name, *args, &block)
       if method_name =~ /\Afind_by_/
         super
       else
@@ -15,9 +13,13 @@ class Page < ActiveRecord::Base
         page || super
       end
     end
+
+    def respond_to_missing?(method_name, include_private = false)
+      method_name =~ /\Afind_by_/ || where(identifier: method_name).exists? || super
+    end
   end
 
   def html
-    BlueCloth.new(markdown.gsub('- ', '– ')).to_html
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(markdown.gsub("- ", "– "))
   end
 end

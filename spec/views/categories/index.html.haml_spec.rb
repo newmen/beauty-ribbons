@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "categories/index" do
-  let(:category) { stub_model(Category, attributes_for(:category)) }
+  let(:category) { create(:category) }
 
   before(:each) do
     assign(:categories, [category, category])

@@ -22,7 +22,7 @@ describe OrderController do
       describe "PUT 'update'" do
         it "returns http success" do
           put :update, id: order.to_param, state: order.state, format: :js
-          response.should be_success
+          response.should be_successful
         end
 
         it "returns http bad request" do
@@ -44,7 +44,7 @@ describe OrderController do
       describe "DELETE 'destroy'" do
         it "returns http success" do
           delete :destroy, id: order.to_param, format: :js
-          response.should be_success
+          response.should be_successful
         end
 
         it "assigns the requested order as @order" do

@@ -1,9 +1,8 @@
 # Abstract type
 class Order < ActiveRecord::Base
-  attr_accessible :username, :email, :comment, :note, :product_ids
   has_and_belongs_to_many :products
 
-  default_scope order('id DESC')
+  default_scope { order("id DESC") }
 
   after_create :do_checkout
 
@@ -22,7 +21,7 @@ class Order < ActiveRecord::Base
   end
 
   def next_state
-    states = %w(confirmed processing completed)
+    states = %w[confirmed processing completed]
     curr_state_index = states.index(state)
     states[curr_state_index + 1] if curr_state_index
   end

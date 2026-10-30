@@ -3,7 +3,7 @@
 
 .row
   .span8
-    - cover_image = image_tag @product.cover.image.preview, class: 'preview', alt: @product.name, 'data-original' => @product.cover.image.url
+    - cover_image = image_tag @product.cover.image.preview.url, class: 'preview', alt: @product.name, 'data-original' => @product.cover.image.url
     - if @product.product_images.count > 1
       .row
         .span2

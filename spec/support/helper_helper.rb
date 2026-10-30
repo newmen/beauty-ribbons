@@ -2,7 +2,9 @@ module HelperHelper
   %w(show edit destroy go_back).each do |btn_type|
     RSpec::Matchers.define "have_#{btn_type}_button" do
       match do |actual|
-        Capybara.string(actual).has_selector?('a[href]', text: I18n.t("actions.#{btn_type}"))
+        Capybara.string(actual).all('a[href]').any? do |link|
+          link.has_text?(I18n.t("actions.#{btn_type}"))
+        end
       end
     end
   end
@@ -17,9 +19,8 @@ module HelperHelper
     end
 
     match do |actual|
-      Capybara.string(actual).has_selector?('a[href]') do |btn|
-        btn.should have_text title
-        btn.should have_selector 'i[class]'
+      Capybara.string(actual).all('a[href]').any? do |link|
+        link.has_text?(title) && link.has_selector?('i[class]')
       end
     end
   end

@@ -108,7 +108,7 @@ describe ColorsController do
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested color" do
-          Color.any_instance.should_receive(:update_attributes).with({ "name" => "MyString" })
+          Color.any_instance.should_receive(:update).with(hash_including("name" => "MyString"))
           put :update, {:id => color.to_param, :color => { "name" => "MyString" }}
         end
 

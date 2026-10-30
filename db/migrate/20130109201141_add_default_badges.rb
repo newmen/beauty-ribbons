@@ -1,12 +1,10 @@
-class AddDefaultBadges < ActiveRecord::Migration
+class AddDefaultBadges < ActiveRecord::Migration[7.2]
   def up
-    Badge.attr_accessible :identifier # little hack for resolv mass-assign protected attributes
-    Badge.create(identifier: 'nova', name: 'Новинка', color: '00cd00')
-    Badge.create(identifier: 'sale', name: 'Скидка', color: 'ff8c00')
+    Badge.create!(identifier: "nova", name: "Новинка", color: "00cd00")
+    Badge.create!(identifier: "sale", name: "Скидка", color: "ff8c00")
   end
 
   def down
-    Badge.nova.delete if Badge.nova
-    Badge.sale.delete if Badge.sale
+    Badge.where(identifier: %w[nova sale]).delete_all
   end
 end

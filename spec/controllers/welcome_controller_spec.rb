@@ -8,7 +8,7 @@ describe WelcomeController do
 
     it "returns http success" do
       get 'index'
-      response.should be_success
+      response.should be_successful
     end
 
     it "assigns welcome page as @page" do

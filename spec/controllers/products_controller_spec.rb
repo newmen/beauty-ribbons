@@ -99,7 +99,7 @@ describe ProductsController do
         it "redirects to the created product" do
           post :create, product: valid_attributes
           created_product = Product.last
-          response.should redirect_to(url_for([created_product.category, created_product]))
+          response.should redirect_to(category_product_url(created_product.category, created_product))
         end
       end
 
@@ -123,7 +123,7 @@ describe ProductsController do
     describe "PUT update" do
       describe "with valid params" do
         it "updates the requested product" do
-          Product.any_instance.should_receive(:update_attributes).with({ "name" => "valid value" })
+          Product.any_instance.should_receive(:update).with(hash_including("name" => "valid value"))
           put :update, id: product.to_param, product: { "name" => "valid value" }
         end
 
@@ -134,7 +134,7 @@ describe ProductsController do
 
         it "redirects to the product" do
           put :update, id: product.to_param, product: valid_attributes
-          response.should redirect_to(url_for([category, product]))
+          response.should redirect_to(category_product_url(category, product))
         end
       end
 
