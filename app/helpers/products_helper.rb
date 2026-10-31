@@ -46,7 +46,7 @@ module ProductsHelper
   end
 
   def cancel_filter_link
-    params_dup = params.dup
+    params_dup = filter_params.dup
     return unless params_dup.reject! { |k, _| filter_names.include?(k) }
     content_tag(:div, class: 'cancel') do
       filter_link_to(t('categories.show.filter.cancel'), params_dup, class: 'btn btn-small btn-warning')
@@ -106,7 +106,8 @@ module ProductsHelper
       controller action slug
       sort_by
     ) + Product::STATIC_SCOPES + filter_names
-    @filter_params = params.select do |k, _|
+    source = params.respond_to?(:permit) ? params.permit(*valid_keys).to_h : params
+    @filter_params = source.select do |k, _|
       valid_keys.include?(k)
     end
   end
