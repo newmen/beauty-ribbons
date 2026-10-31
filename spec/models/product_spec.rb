@@ -87,6 +87,27 @@ describe Product do
     end
   end
 
+  describe "archived scopes with legacy SQLite booleans" do
+    let(:category) { create(:category) }
+    let!(:active_product) { create(:product, category: category, name: "Active product", is_archived: false) }
+    let!(:archived_product) { create(:product, category: category, name: "Archived product", is_archived: true) }
+
+    before do
+      Product.connection.execute("UPDATE products SET is_archived = 'f' WHERE id = #{active_product.id}")
+      Product.connection.execute("UPDATE products SET is_archived = 't' WHERE id = #{archived_product.id}")
+    end
+
+    it "finds active products" do
+      Product.not_archived.pluck(:id).should include(active_product.id)
+      Product.not_archived.pluck(:id).should_not include(archived_product.id)
+    end
+
+    it "finds archived products" do
+      Product.archived.pluck(:id).should include(archived_product.id)
+      Product.archived.pluck(:id).should_not include(active_product.id)
+    end
+  end
+
   describe "tagging" do
     it "returns tag list as string of tag names" do
       product = create(:product, tag_list: 'orange, banana, apple')

@@ -29,11 +29,11 @@ class Product < ActiveRecord::Base
   scope :include_refs, -> { includes(:category).includes(:cover) }
   scope :not_product_ids, ->(ids) { ids.empty? ? all : where("id NOT IN (?)", ids) }
   scope :not_products, ->(products) { not_product_ids(products.map(&:id)) }
-  scope :not_archived, -> { where(is_archived: false) }
+  scope :not_archived, -> { where("is_archived IS NULL OR is_archived IN (0, '0', 'f', 'false')") }
 
   STATIC_SCOPES = %w[novelties sales archived]
 
-  scope :archived, -> { where(is_archived: true) }
+  scope :archived, -> { where("is_archived IN (1, '1', 't', 'true')") }
   scope :novelties, -> { not_archived.where("products.created_at > ?", Time.at(Time.now.to_i - Settings.nova_seconds)) }
   scope :sales, -> { not_archived.where("old_price_cents IS NOT NULL AND old_price_cents > price_cents") }
 

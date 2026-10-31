@@ -27,4 +27,14 @@ describe "Categories", type: :request do
     expect(response).to have_http_status(:ok)
     expect(response.body).to include(tag.name)
   end
+
+  it "renders products with legacy text archive flags" do
+    product
+    Product.connection.execute("UPDATE products SET is_archived = 'f' WHERE id = #{product.id}")
+
+    get category_path(category)
+
+    expect(response).to have_http_status(:ok)
+    expect(response.body).to include(product.name)
+  end
 end
